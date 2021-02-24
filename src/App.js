@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Header from './components/Header';
+import Readlist from './components/Readlist';
+import Read from './components/Read';
+import Add from './components/Add';
+
+import {AppProvider} from './context/AppProvider';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <AppProvider>
+            <Router>
+                <Header/>
+                <div className="l-container">
+                    <Switch>
+                        <Route exact path='/'>
+                            <Readlist/>
+                        </Route>
+                        <Route path='/read'>
+                            <Read/>
+                        </Route>
+                        <Route path='/add'>
+                            <Add/>
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
+        </AppProvider>
+    );
 }
 
 export default App;
