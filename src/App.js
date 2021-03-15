@@ -1,35 +1,16 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Header from './components/Header';
-import Readlist from './components/Readlist';
-import Read from './components/Read';
-import Add from './components/Add';
+import Navbar from './components/Navbar';
+import Todos from './components/Todos';
 
-import {AppProvider} from './context/AppProvider';
+import { Provider } from './store/Provider';
 
-import './App.css';
-
-const App = () => {
+export default function App() {
     return (
-        <AppProvider>
-            <Router>
-                <Header/>
-                <div className="l-container">
-                    <Switch>
-                        <Route exact path='/'>
-                            <Readlist/>
-                        </Route>
-                        <Route path='/read'>
-                            <Read/>
-                        </Route>
-                        <Route path='/add'>
-                            <Add/>
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
-        </AppProvider>
+        <Provider>
+            <div className='App'>
+                <Navbar/>
+                <Todos/>
+            </div>
+        </Provider>
     );
 }
-
-export default App;
